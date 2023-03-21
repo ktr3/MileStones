@@ -1,0 +1,4 @@
+    Procedural Language - Instructions in a C program are executed step by step.
+    Portable - You can move C programs from one platform to another, and run it without any or minimal changes.
+    Speed - C programming is faster than most programming languages like Java, Python, etc.
+    General Purpose - C programming can be used to develop operating systems, embedded systems, databases, and so on.
