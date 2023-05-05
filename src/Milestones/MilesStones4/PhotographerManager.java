@@ -117,9 +117,9 @@ public class PhotographerManager {
             myConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected!");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("NOT CONECTED");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("NOT CONECTED 2");
         }
         visitsMap();
     }
@@ -143,13 +143,13 @@ public class PhotographerManager {
         try {
             myStatement = myConnection.createStatement();
 
-            if(myStatement.execute("SELECT * FROM photographers;")) {
+            if(myStatement.execute("SELECT * FROM Photographers;")) {
                 myResultset = myStatement.getResultSet();
 
                 while (myResultset.next()) {
-                    int photographerId = myResultset.getInt("photographerId");
-                    String name = myResultset.getString("name");
-                    Boolean awarded = myResultset.getBoolean("awarded");
+                    int photographerId = myResultset.getInt("PhotographerId");
+                    String name = myResultset.getString("Name");
+                    Boolean awarded = myResultset.getBoolean("Awarded");
                     Photographer myPhotographer = new Photographer(photographerId, name, awarded);
                     myPhotographerList.add(myPhotographer);
                 }
@@ -168,16 +168,16 @@ public class PhotographerManager {
 
         try {
             myStatement = myConnection.createStatement();
-            if(myStatement.execute("SELECT * FROM pictures;")){
+            if(myStatement.execute("SELECT * FROM Pictures;")){
                 myResultset = myStatement.getResultSet();
 
                 while(myResultset.next()){
-                    int pictureId = myResultset.getInt("pictureId");
-                    String title = myResultset.getString("title");
-                    Date date = myResultset.getDate("date");
-                    String file = myResultset.getString("file");
-                    int visits = myResultset.getInt("visits");
-                    int photographerId = myResultset.getInt("photographerId");
+                    int pictureId = myResultset.getInt("PictureId");
+                    String title = myResultset.getString("Title");
+                    Date date = myResultset.getDate("Date");
+                    String file = myResultset.getString("File");
+                    int visits = myResultset.getInt("Visits");
+                    int photographerId = myResultset.getInt("PhotographerId");
 
                     System.out.println(pictureId + ": " + visits);
 
@@ -191,9 +191,9 @@ public class PhotographerManager {
                                 int id = it.next();
                                 int vists = myVisitsMap.get(id);
                                 if(vists == 0) {
-                                    int selected_option2 = JOptionPane.showConfirmDialog(null,"Delete photographer?","Confirm delete",JOptionPane.YES_NO_OPTION);
+                                    int selected_option2 = JOptionPane.showConfirmDialog(null,"Delete Photographer?","Confirm Delete",JOptionPane.YES_NO_OPTION);
                                     if(selected_option2 == 0) {
-                                        PreparedStatement myPreparedStatement2 = myConnection.prepareStatement("DELETE FROM photographers WHERE photographerId = ?");
+                                        PreparedStatement myPreparedStatement2 = myConnection.prepareStatement("DELETE FROM Photographers WHERE PhotographerId = ?");
                                         myPreparedStatement2.setInt(1, photographerId);
                                         myPreparedStatement2.executeUpdate();
                                         FileWriter foS = new FileWriter("secondoption.txt");
@@ -202,7 +202,7 @@ public class PhotographerManager {
                                     }
                                 }
                             }
-                            PreparedStatement myPreparedStatement = myConnection.prepareStatement("DELETE FROM pictures WHERE pictureId = ?");
+                            PreparedStatement myPreparedStatement = myConnection.prepareStatement("DELETE FROM Pictures WHERE PictureId = ?");
                             myPreparedStatement.setInt(1, pictureId);
                             myPreparedStatement.executeUpdate();
                             System.out.println("firstoption");
@@ -225,22 +225,22 @@ public class PhotographerManager {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String datePickerString = df.format(datePicker);
                 System.out.println(datePickerString);
-                myStatement = myConnection.prepareStatement("SELECT * FROM pictures WHERE photographerId = ? AND date > ?");
+                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ? AND Date > ?");
                 myStatement.setInt(1, this.getPhotographers().get(photographerIndex).getPhotographerId());
                 myStatement.setString(2, datePickerString);
             } else {
-                myStatement = myConnection.prepareStatement("SELECT * FROM pictures WHERE photographerId = ?;");
+                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ?;");
                 myStatement.setInt(1, this.getPhotographers().get(photographerIndex).getPhotographerId());
             }
             myResultset = myStatement.executeQuery();
 
             while(myResultset.next()){
-                int pictureId = myResultset.getInt("pictureId");
-                String title = myResultset.getString("title");
-                Date date = myResultset.getDate("date");
-                String file = myResultset.getString("file");
-                int visits = myResultset.getInt("visits");
-                int photographerId = myResultset.getInt("photographerId");
+                int pictureId = myResultset.getInt("PictureId");
+                String title = myResultset.getString("tTtle");
+                Date date = myResultset.getDate("Date");
+                String file = myResultset.getString("File");
+                int visits = myResultset.getInt("Visits");
+                int photographerId = myResultset.getInt("PhotographerId");
 
                 myPictureList.add(new Picture(pictureId, title, date, file, visits, this.getPhotographers().get(photographerIndex)));
             }
@@ -260,16 +260,16 @@ public class PhotographerManager {
         try {
             myStatement = myConnection.createStatement();
 
-            if(myStatement.execute("SELECT * FROM pictures;")){
+            if(myStatement.execute("SELECT * FROM Pictures;")){
                 myResultset = myStatement.getResultSet();
 
                 while(myResultset.next()) {
-                    int pictureId = myResultset.getInt("pictureId");
-                    String title = myResultset.getString("title");
-                    Date date = myResultset.getDate("date");
-                    String file = myResultset.getString("file");
-                    int visits = myResultset.getInt("visits");
-                    int photographerId = myResultset.getInt("photographerId");
+                    int pictureId = myResultset.getInt("PictureId");
+                    String title = myResultset.getString("Title");
+                    Date date = myResultset.getDate("Date");
+                    String file = myResultset.getString("File");
+                    int visits = myResultset.getInt("Visits");
+                    int photographerId = myResultset.getInt("PhotographerId");
 
                     if(myVisitsMap.containsKey(photographerId)) {
                         visits += myVisitsMap.get(photographerId);
@@ -294,13 +294,13 @@ public class PhotographerManager {
             int visits = myVisitsMap.get(photographerId);
             if(visits >= minVisits) {
                 try {
-                    PreparedStatement myStatement = myConnection.prepareStatement("SELECT * FROM photographers WHERE photographerId = ?;");
+                    PreparedStatement myStatement = myConnection.prepareStatement("SELECT * FROM Photographers WHERE PhotographerId = ?;");
                     myStatement.setInt(1, photographerId);
                     ResultSet myResultset = myStatement.executeQuery();
                     myResultset.next();
-                    int awards = myResultset.getInt("awarded");
+                    int awards = myResultset.getInt("Awarded");
 
-                    myStatement = myConnection.prepareStatement("UPDATE photographers SET awarded = ? WHERE photographerId = ?");
+                    myStatement = myConnection.prepareStatement("UPDATE Photographers SET Awarded = ? WHERE PhotographerId = ?");
                     myStatement.setInt(1, (awards+1));
                     myStatement.setInt(2,photographerId);
                     myStatement.executeUpdate();

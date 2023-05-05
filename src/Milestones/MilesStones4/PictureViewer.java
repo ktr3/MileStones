@@ -2,7 +2,6 @@ package Milestones.MilesStones4;
 
 /*
 package Exercise2;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-
 import org.jdesktop.swingx.JXDatePicker;
 
 public class PictureViewer extends JFrame {
@@ -127,12 +125,13 @@ public class PictureViewer extends JFrame implements ActionListener {
     private ImageIcon image;
     private JLabel pickLabel;
 
-    public void addComponentsToPanel1(Container panel1) {
+/*    public void addComponentsToPanel1(Container panel1) {
         awardButton = new JButton("AWARD");
         awardButton.setPreferredSize(new Dimension(200, 50));
         awardButton.addActionListener(this);
         panel1.add(awardButton);
-    }
+    }*/
+/*
 
     public void addComponentsToPanel2(Container panel2) {
         removeButton = new JButton("REMOVE");
@@ -140,14 +139,15 @@ public class PictureViewer extends JFrame implements ActionListener {
         removeButton.addActionListener(this);
         panel2.add(removeButton);
     }
+*/
 
     public void addComponentsToPanel3(Container panel3) {
         JLabel label3 = new JLabel("Photographer: ");
         comboBoxModel = new DefaultComboBoxModel<String>();
-        List<Photographer> myPhotographers = new ArrayList<Photographer>() ;
+        List<Photographer> myPhotographers = new ArrayList<Photographer>();
         myPhotographers = myPhotographerManager.getPhotographers();
         Iterator<Photographer> it = myPhotographers.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             String name = it.next().getName();
             comboBoxModel.addElement(name);
         }
@@ -168,7 +168,7 @@ public class PictureViewer extends JFrame implements ActionListener {
         listModel.removeAllElements();
         List<Picture> myPictures = myPhotographerManager.getPictures(comboBox.getSelectedIndex(), datePicker.getDate());
         Iterator<Picture> it = myPictures.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             listModel.addElement(it.next().getTitle());
         }
     }
@@ -188,24 +188,24 @@ public class PictureViewer extends JFrame implements ActionListener {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(e.getClickCount() == 2) {
+                if (e.getClickCount() == 2) {
                     List<Picture> myPictures = myPhotographerManager.getPictures(comboBox.getSelectedIndex(), datePicker.getDate());
                     System.out.println(myPictures.get(list.getSelectedIndex()).getFile());
                     image = new ImageIcon("img/" + myPictures.get(list.getSelectedIndex()).getFile());
-                    image.setImage(image.getImage().getScaledInstance(200,100,1));
+                    image.setImage(image.getImage().getScaledInstance(200, 100, 1));
                     pickLabel.setIcon(image);
                 }
             }
         });
         addPictures();
         JScrollPane scrollPane = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(270,100));
+        scrollPane.setPreferredSize(new Dimension(270, 100));
         panel5.add(scrollPane);
     }
 
     public void addComponentsToPanel6(Container panel6) {
         image = new ImageIcon("img/picture1.jpg");
-        image.setImage(image.getImage().getScaledInstance(200,100,1));
+        image.setImage(image.getImage().getScaledInstance(200, 100, 1));
         pickLabel = new JLabel();
         pickLabel.setIcon(image);
 
@@ -222,11 +222,11 @@ public class PictureViewer extends JFrame implements ActionListener {
             }
         });
         this.setLayout(new GridLayout(3, 2));
-        this.setPreferredSize(new Dimension(600,450));
+        this.setPreferredSize(new Dimension(600, 450));
 
         myPhotographerManager = new PhotographerManager();
 
-        JPanel panel1 = new JPanel();
+/*      JPanel panel1 = new JPanel();
         panel1.setBorder(new EmptyBorder(20,20,10,10));
         addComponentsToPanel1(panel1);
         this.add(panel1);
@@ -235,28 +235,29 @@ public class PictureViewer extends JFrame implements ActionListener {
         panel2.setBorder(new EmptyBorder(20,10,10,20));
         addComponentsToPanel2(panel2);
         this.add(panel2);
+*/
 
         JPanel panel3 = new JPanel();
-        panel3.setPreferredSize(new Dimension(300,100));
-        panel3.setBorder(new EmptyBorder(10,20,10,10));
+        panel3.setPreferredSize(new Dimension(300, 100));
+        panel3.setBorder(new EmptyBorder(10, 20, 10, 10));
         addComponentsToPanel3(panel3);
         this.add(panel3);
 
         JPanel panel4 = new JPanel();
-        panel4.setPreferredSize(new Dimension(300,100));
-        panel4.setBorder(new EmptyBorder(10,10,10,20));
+        panel4.setPreferredSize(new Dimension(300, 100));
+        panel4.setBorder(new EmptyBorder(10, 10, 10, 20));
         addComponentsToPanel4(panel4);
         this.add(panel4);
 
         JPanel panel5 = new JPanel();
-        panel5.setPreferredSize(new Dimension(300,100));
-        panel5.setBorder(new EmptyBorder(10,20,20,10));
+        panel5.setPreferredSize(new Dimension(300, 100));
+        panel5.setBorder(new EmptyBorder(10, 20, 20, 10));
         addComponentsToPanel5(panel5);
         this.add(panel5);
 
         JPanel panel6 = new JPanel();
-        panel6.setPreferredSize(new Dimension(300,100));
-        panel6.setBorder(new EmptyBorder(10,20,20,10));
+        panel6.setPreferredSize(new Dimension(300, 100));
+        panel6.setBorder(new EmptyBorder(10, 20, 20, 10));
         addComponentsToPanel6(panel6);
         this.add(panel6);
 
@@ -273,7 +274,7 @@ public class PictureViewer extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         Object source = actionEvent.getSource();
 
-        if(source == comboBox){
+        if (source == comboBox) {
             addPictures();
 
         } else if (source == datePicker) {
