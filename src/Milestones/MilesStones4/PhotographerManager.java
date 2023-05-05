@@ -236,7 +236,7 @@ public class PhotographerManager {
 
             while(myResultset.next()){
                 int pictureId = myResultset.getInt("PictureId");
-                String title = myResultset.getString("tTtle");
+                String title = myResultset.getString("Tittle");
                 Date date = myResultset.getDate("Date");
                 String file = myResultset.getString("File");
                 int visits = myResultset.getInt("Visits");

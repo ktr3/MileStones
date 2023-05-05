@@ -191,7 +191,7 @@ public class PictureViewer extends JFrame implements ActionListener {
                 if (e.getClickCount() == 2) {
                     List<Picture> myPictures = myPhotographerManager.getPictures(comboBox.getSelectedIndex(), datePicker.getDate());
                     System.out.println(myPictures.get(list.getSelectedIndex()).getFile());
-                    image = new ImageIcon("img/" + myPictures.get(list.getSelectedIndex()).getFile());
+                    image = new ImageIcon("src/img/" + myPictures.get(list.getSelectedIndex()).getFile());
                     image.setImage(image.getImage().getScaledInstance(200, 100, 1));
                     pickLabel.setIcon(image);
                 }
@@ -204,7 +204,7 @@ public class PictureViewer extends JFrame implements ActionListener {
     }
 
     public void addComponentsToPanel6(Container panel6) {
-        image = new ImageIcon("img/picture1.jpg");
+        image = new ImageIcon("src/img/baki.jpg");
         image.setImage(image.getImage().getScaledInstance(200, 100, 1));
         pickLabel = new JLabel();
         pickLabel.setIcon(image);
