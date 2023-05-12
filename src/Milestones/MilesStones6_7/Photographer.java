@@ -1,4 +1,4 @@
-package Milestones.MilesStones4;
+package Milestones.MilesStones6_7;
 
 public class Photographer {
 

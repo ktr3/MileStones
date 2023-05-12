@@ -1,4 +1,4 @@
-package Milestones.MilesStones4;
+package Milestones.MilesStones6_7;
 
 import javax.swing.*;
 import java.io.FileWriter;

@@ -4,7 +4,7 @@
 <br>
 2 - [Milestone2:](/src/Milestones/MilesStone2/) 
 <br>
-3 - [Milestone3:](/src/Milestones/MilesStone3/) 
+3 - [Milestone3:](/src/Milestones/MilesStone4/) 
 <br>
-4 - [Milestone4:](/src/Milestones/MilesStones4/) 
+4 - [Milestone4:](/src/Milestones/MilesStones6_7/) 
 <br>
