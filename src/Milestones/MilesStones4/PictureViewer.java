@@ -1,108 +1,5 @@
 package Milestones.MilesStones4;
 
-/*
-package Exercise2;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.List;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import org.jdesktop.swingx.JXDatePicker;
-
-public class PictureViewer extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private JComboBox<String> photographersComboBox;
-    private JXDatePicker datePicker;
-    private JList<Picture> pictureList;
-    private JLabel pictureLabel;
-
-    public PictureViewer(List<Photographer> photographers, List<Picture> pictures) {
-        super("Picture Viewer");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Create the components
-        photographersComboBox = new JComboBox<>(photographers.toArray(new String[0]));
-        photographersComboBox.addActionListener(new PhotographerComboBoxListener());
-        datePicker = new JXDatePicker();
-        pictureList = new JList<>(new DefaultListModel<>());
-        pictureList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        pictureList.addListSelectionListener(new PictureListSelectionListener());
-        pictureLabel = new JLabel();
-
-        // Add the components to the content pane
-        JPanel contentPane = new JPanel(new GridLayout(2, 2));
-        contentPane.add(photographersComboBox);
-        contentPane.add(datePicker);
-        contentPane.add(new JScrollPane(pictureList));
-        contentPane.add(pictureLabel);
-        getContentPane().add(contentPane, BorderLayout.CENTER);
-
-        // Set the initial list of pictures
-        updatePictureList(pictures);
-
-        // Pack and show the window
-        pack();
-        setVisible(true);
-    }
-
-    private void updatePictureList(List<Picture> pictures) {
-        DefaultListModel<Picture> model = (DefaultListModel<Picture>) pictureList.getModel();
-        model.clear();
-        for (Picture picture : pictures) {
-            if (picture.getPhotographer().equals(photographersComboBox.getSelectedItem())
-                    && picture.getDate().equals(datePicker.getDate())) {
-                model.addElement(picture);
-            }
-        }
-        if (model.getSize() > 0) {
-            pictureList.setSelectedIndex(0);
-        }
-    }
-
-    private class PhotographerComboBoxListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            updatePictureList(DatabaseManager.getPictures());
-        }
-    }
-
-    private class PictureListSelectionListener implements javax.swing.event.ListSelectionListener {
-        @Override
-        public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-            Picture selectedPicture = pictureList.getSelectedValue();
-            if (selectedPicture != null) {
-                pictureLabel.setIcon(new ImageIcon(String.valueOf(selectedPicture.getPhotographerId())));
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            List<Photographer> photographers = null;
-            try {
-                photographers = DatabaseManager.getPhotographers();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            List<Picture> pictures = DatabaseManager.getPictures();
-            new PictureViewer(photographers, pictures);
-        });
-    }
-}
-*/
-
-
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
@@ -125,13 +22,12 @@ public class PictureViewer extends JFrame implements ActionListener {
     private ImageIcon image;
     private JLabel pickLabel;
 
-/*    public void addComponentsToPanel1(Container panel1) {
+    public void addComponentsToPanel1(Container panel1) {
         awardButton = new JButton("AWARD");
         awardButton.setPreferredSize(new Dimension(200, 50));
         awardButton.addActionListener(this);
         panel1.add(awardButton);
-    }*/
-/*
+    }
 
     public void addComponentsToPanel2(Container panel2) {
         removeButton = new JButton("REMOVE");
@@ -139,7 +35,6 @@ public class PictureViewer extends JFrame implements ActionListener {
         removeButton.addActionListener(this);
         panel2.add(removeButton);
     }
-*/
 
     public void addComponentsToPanel3(Container panel3) {
         JLabel label3 = new JLabel("Photographer: ");
@@ -226,16 +121,15 @@ public class PictureViewer extends JFrame implements ActionListener {
 
         myPhotographerManager = new PhotographerManager();
 
-/*      JPanel panel1 = new JPanel();
-        panel1.setBorder(new EmptyBorder(20,20,10,10));
+        JPanel panel1 = new JPanel();
+        panel1.setBorder(new EmptyBorder(20, 20, 10, 10));
         addComponentsToPanel1(panel1);
         this.add(panel1);
 
         JPanel panel2 = new JPanel();
-        panel2.setBorder(new EmptyBorder(20,10,10,20));
+        panel2.setBorder(new EmptyBorder(20, 10, 10, 20));
         addComponentsToPanel2(panel2);
         this.add(panel2);
-*/
 
         JPanel panel3 = new JPanel();
         panel3.setPreferredSize(new Dimension(300, 100));
