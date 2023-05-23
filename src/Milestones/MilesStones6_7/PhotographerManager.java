@@ -89,7 +89,8 @@ public class PhotographerManager {
                     System.out.println(pictureId + ": " + visits);
 
                     if (visits == 0) {
-                        int selected_option = JOptionPane.showConfirmDialog(null, "Delete " + file + "?", "Confirm delete", JOptionPane.YES_NO_OPTION);
+                        int selected_option = JOptionPane.showConfirmDialog(null, "Delete "
+                                + file + "?", "Confirm delete", JOptionPane.YES_NO_OPTION);
                         if (selected_option == 0) {
 
                             Map<Integer, Integer> myVisitsMap = visitsMap();
@@ -98,9 +99,11 @@ public class PhotographerManager {
                                 int id = it.next();
                                 int vists = myVisitsMap.get(id);
                                 if (vists == 0) {
-                                    int selected_option2 = JOptionPane.showConfirmDialog(null, "Delete Photographer?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+                                    int selected_option2 = JOptionPane.showConfirmDialog(null,
+                                            "Delete Photographer?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
                                     if (selected_option2 == 0) {
-                                        PreparedStatement myPreparedStatement2 = myConnection.prepareStatement("DELETE FROM Photographers WHERE PhotographerId = ?");
+                                        PreparedStatement myPreparedStatement2 = myConnection.prepareStatement(
+                                                "DELETE FROM Photographers WHERE PhotographerId = ?");
                                         myPreparedStatement2.setInt(1, photographerId);
                                         myPreparedStatement2.executeUpdate();
                                         FileWriter foS = new FileWriter("secondoption.txt");
@@ -109,7 +112,8 @@ public class PhotographerManager {
                                     }
                                 }
                             }
-                            PreparedStatement myPreparedStatement = myConnection.prepareStatement("DELETE FROM Pictures WHERE PictureId = ?");
+                            PreparedStatement myPreparedStatement = myConnection.prepareStatement(
+                                    "DELETE FROM Pictures WHERE PictureId = ?");
                             myPreparedStatement.setInt(1, pictureId);
                             myPreparedStatement.executeUpdate();
                             System.out.println("firstoption");
@@ -132,7 +136,8 @@ public class PhotographerManager {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String datePickerString = df.format(datePicker);
                 System.out.println(datePickerString);
-                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ? AND Date > ?");
+                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ? " +
+                        "AND Date > ?");
                 myStatement.setInt(1, this.getPhotographers().get(photographerIndex).getPhotographerId());
                 myStatement.setString(2, datePickerString);
             } else {
