@@ -154,7 +154,8 @@ public class PhotographerManager {
                 int visits = myResultset.getInt("Visits");
                 int photographerId = myResultset.getInt("PhotographerId");
 
-                myPictureList.add(new Picture(pictureId, title, date, file, visits, this.getPhotographers().get(photographerIndex)));
+                myPictureList.add(new Picture(pictureId, title, date, file, visits,
+                        this.getPhotographers().get(photographerIndex)));
             }
 
         } catch (SQLException e) {
@@ -206,13 +207,15 @@ public class PhotographerManager {
             int visits = myVisitsMap.get(photographerId);
             if (visits >= minVisits) {
                 try {
-                    PreparedStatement myStatement = myConnection.prepareStatement("SELECT * FROM Photographers WHERE PhotographerId = ?;");
+                    PreparedStatement myStatement = myConnection.prepareStatement(
+                            "SELECT * FROM Photographers WHERE PhotographerId = ?;");
                     myStatement.setInt(1, photographerId);
                     ResultSet myResultset = myStatement.executeQuery();
                     myResultset.next();
                     int awards = myResultset.getInt("Awarded");
 
-                    myStatement = myConnection.prepareStatement("UPDATE Photographers SET Awarded = ? WHERE PhotographerId = ?");
+                    myStatement = myConnection.prepareStatement(
+                            "UPDATE Photographers SET Awarded = ? WHERE PhotographerId = ?");
                     myStatement.setInt(1, (awards + 1));
                     myStatement.setInt(2, photographerId);
                     myStatement.executeUpdate();

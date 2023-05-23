@@ -7,7 +7,7 @@ public class Picture {
     private int visits;
     private Photographer photographer;
 
-    public Picture(int pictureId, Date date, String file, int visits, Photographer photographer) {
+    public Picture(int pictureId, String title, Date date, String file, int visits, Photographer photographer) {
         this.pictureId = pictureId;
         this.date = date;
         this.file = file;
