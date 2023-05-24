@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="swingx-0.9.2" level="project" />
     <orderEntry type="library" name="mariadb-java-client-3.1.21" level="project" />
+    <orderEntry type="library" name="mariadb-java-client-3.1.2" level="project" />
   </component>
 </module>

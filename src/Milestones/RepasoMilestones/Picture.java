@@ -2,6 +2,7 @@ package Milestones.RepasoMilestones;
 import java.util.Date;
 public class Picture {
     private int pictureId;
+    private String title;
     private Date date;
     private String file;
     private int visits;
@@ -9,6 +10,7 @@ public class Picture {
 
     public Picture(int pictureId, String title, Date date, String file, int visits, Photographer photographer) {
         this.pictureId = pictureId;
+        this.title = title;
         this.date = date;
         this.file = file;
         this.visits = visits;
@@ -17,6 +19,10 @@ public class Picture {
 
     public int getPictureId() {
         return pictureId;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public Date getDate() {

@@ -4,24 +4,24 @@ import javax.swing.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 public class PhotographerManager {
 
     private Connection myConnection;
     private static final String driver = "org.mariadb.jdbc.Driver";
-    private static final String link = "jdbc:mariadb://localhost:3306/ktr3";
-    private static final String user = "root";
-    private static final String pass = "root";
+    private static final String url = "jdbc:mariadb://localhost:3306/ktr3";
+    private static final String username = "root";
+    private static final String password = "root";
 
     public PhotographerManager() {
         myConnection = null;
         try {
             Class.forName(driver);
-            myConnection = DriverManager.getConnection(link, user, pass);
+            myConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connected!");
         } catch (ClassNotFoundException e) {
             System.out.println("Not connected class");
