@@ -122,7 +122,6 @@ public class PhotographerManager {
         }
     }
 
-
     public List<Picture> getPicture(int photographerIndex, Date datePicker) {
         List<Picture> myPictureList = new ArrayList<Picture>();
         PreparedStatement myStatement = null;
@@ -180,6 +179,64 @@ public class PhotographerManager {
         return myPictureList;
     }
 
+  /*  public List<Picture> getPicture(int photographerIndex, Date datePicker) {
+        List<Picture> myPictureList = new ArrayList<Picture>();
+        PreparedStatement myStatement = null;
+        ResultSet myResultset = null;
+
+        try {
+            if (datePicker != null) {
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String datePickerString = df.format(datePicker);
+                System.out.println(datePickerString);
+
+                myStatement = myConnection.prepareStatement(
+                        "SELECT * FROM Pictures WHERE PhotographerId = ? AND Date > ?");
+                myStatement.setInt(1, getPhotographers().get(photographerIndex).getPhotographerID());
+                myStatement.setString(2, datePickerString);
+            } else {
+                myStatement = myConnection.prepareStatement(
+                        "SELECT * FROM Pictures WHERE PhotographerId = ?");
+                myStatement.setInt(1,
+                        getPhotographers().get(photographerIndex).getPhotographerID());
+            }
+
+            myResultset = myStatement.executeQuery();
+
+            while (myResultset.next()) {
+                int pictureId = myResultset.getInt("PictureId");
+                String title = myResultset.getString("Title");
+                Date date = myResultset.getDate("Date");
+                String file = myResultset.getString("File");
+                int visits = myResultset.getInt("Visits");
+                int photographerId = myResultset.getInt("PhotographerId");
+
+                Photographer photographer = getPhotographers().get(photographerIndex);
+                Picture picture = new Picture(pictureId, title, date, file, visits, photographer);
+                myPictureList.add(picture);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (myResultset != null) {
+                try {
+                    myResultset.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (myStatement != null) {
+                try {
+                    myStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return myPictureList;
+    }
+*/
     public Map<Integer, Integer> visitsMap() {
         Map<Integer, Integer> myVisitMap = new HashMap<>();
         Statement myStatement = null;

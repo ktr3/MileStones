@@ -136,12 +136,14 @@ public class PhotographerManager {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String datePickerString = df.format(datePicker);
                 System.out.println(datePickerString);
-                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ? " +
+                myStatement = myConnection.prepareStatement(
+                        "SELECT * FROM Pictures WHERE PhotographerId = ? " +
                         "AND Date > ?");
                 myStatement.setInt(1, this.getPhotographers().get(photographerIndex).getPhotographerId());
                 myStatement.setString(2, datePickerString);
             } else {
-                myStatement = myConnection.prepareStatement("SELECT * FROM Pictures WHERE PhotographerId = ?;");
+                myStatement = myConnection.prepareStatement(
+                        "SELECT * FROM Pictures WHERE PhotographerId = ?;");
                 myStatement.setInt(1, this.getPhotographers().get(photographerIndex).getPhotographerId());
             }
             myResultset = myStatement.executeQuery();
